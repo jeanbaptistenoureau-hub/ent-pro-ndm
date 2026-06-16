@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ENT Pro NDM</title>
+<title>ENT NDM</title>
 
 <style>
 body{
 margin:0;
-font-family:Arial;
-background:#0b1e3a;
+font-family:Arial,sans-serif;
+background:#0f172a;
 color:white;
 }
 
 header{
-background:#1565c0;
+background:#2563eb;
 padding:15px;
 text-align:center;
 font-size:28px;
@@ -24,7 +24,7 @@ font-weight:bold;
 .card{
 background:white;
 color:black;
-max-width:700px;
+max-width:800px;
 margin:20px auto;
 padding:20px;
 border-radius:15px;
@@ -38,30 +38,33 @@ border-radius:10px;
 }
 
 button{
-background:#1565c0;
+background:#2563eb;
 color:white;
 border:none;
 cursor:pointer;
 }
 
-.menu,.page{
+.menu{
 display:none;
 }
 
 .box{
-background:#1565c0;
+background:#2563eb;
 color:white;
 padding:15px;
 margin-top:10px;
 border-radius:10px;
 cursor:pointer;
 }
+
+.page{
+display:none;
+}
 </style>
 </head>
-
 <body>
 
-<header>ENT Pro NDM</header>
+<header>ENT NDM</header>
 
 <div class="card" id="login">
 
@@ -70,20 +73,16 @@ cursor:pointer;
 <input id="nom" placeholder="Nom">
 
 <select id="role">
-
 <option>Élève</option>
+<option>Parent</option>
 <option>Professeur</option>
 <option>CPE</option>
 <option>Délégué</option>
 <option>Sous-délégué</option>
-<option>Parent</option>
 <option>Administration</option>
-
 </select>
 
-<button onclick="connexion()">
-Connexion
-</button>
+<button onclick="connexion()">Connexion</button>
 
 </div>
 
@@ -95,12 +94,28 @@ Connexion
 📅 Emploi du temps
 </div>
 
+<div class="box" onclick="ouvrir('devoirs')">
+📚 Devoirs
+</div>
+
+<div class="box" onclick="ouvrir('notes')">
+📊 Notes
+</div>
+
+<div class="box" onclick="ouvrir('messages')">
+💬 Messagerie
+</div>
+
 <div class="box" id="appelBtn" onclick="ouvrir('appel')">
 📝 Faire l'appel
 </div>
 
-<div class="box" onclick="ouvrir('devoirs')">
-📚 Devoirs
+<div class="box" onclick="ouvrir('remarques')">
+⚠️ Remarques
+</div>
+
+<div class="box" onclick="ouvrir('colles')">
+⏰ Heures de colle
 </div>
 
 <div class="box" onclick="ouvrir('cdi')">
@@ -110,18 +125,36 @@ Connexion
 </div>
 
 <div class="card page" id="edt">
-
 <h2>Emploi du temps</h2>
-
-<p>Lundi : Maths 8h-9h</p>
-<p>Mardi : Français 10h-11h</p>
-
+<p>Lundi : Maths</p>
+<p>Mardi : Français</p>
 <button onclick="retour()">Retour</button>
+</div>
 
+<div class="card page" id="devoirs">
+<h2>Devoirs</h2>
+<ul>
+<li>Maths : Exercice 5</li>
+<li>Histoire : Révision chapitre 2</li>
+</ul>
+<button onclick="retour()">Retour</button>
+</div>
+
+<div class="card page" id="notes">
+<h2>Notes</h2>
+<p>Maths : 15/20</p>
+<p>Français : 13/20</p>
+<button onclick="retour()">Retour</button>
+</div>
+
+<div class="card page" id="messages">
+<h2>Messagerie</h2>
+<input placeholder="Écrire un message">
+<button>Envoyer</button>
+<button onclick="retour()">Retour</button>
 </div>
 
 <div class="card page" id="appel">
-
 <h2>Appel</h2>
 
 <label><input type="checkbox"> Élève 1 présent</label><br>
@@ -131,25 +164,22 @@ Connexion
 <button>Enregistrer</button>
 
 <button onclick="retour()">Retour</button>
-
 </div>
 
-<div class="card page" id="devoirs">
-
-<h2>Devoirs</h2>
-
-<ul>
-<li>Maths : Exercice 5</li>
-<li>Français : Lecture chapitre 2</li>
-</ul>
-
+<div class="card page" id="remarques">
+<h2>Remarques</h2>
+<p>Aucune remarque</p>
 <button onclick="retour()">Retour</button>
+</div>
 
+<div class="card page" id="colles">
+<h2>Heures de colle</h2>
+<p>Aucune heure de colle</p>
+<button onclick="retour()">Retour</button>
 </div>
 
 <div class="card page" id="cdi">
-
-<h2>Prêt ordinateur CDI</h2>
+<h2>CDI</h2>
 
 <input placeholder="Nom élève">
 
@@ -159,42 +189,34 @@ Connexion
 <option>PC-03</option>
 </select>
 
-<input placeholder="Prix du matériel">
-
 <button>Enregistrer le prêt</button>
 
 <button onclick="retour()">Retour</button>
-
 </div>
 
 <script>
 
-let roleActuel="";
-
 function connexion(){
 
-roleActuel=
-document.getElementById("role").value;
-
-let nom=
-document.getElementById("nom").value;
+let role=document.getElementById("role").value;
+let nom=document.getElementById("nom").value;
 
 document.getElementById("login").style.display="none";
 document.getElementById("menu").style.display="block";
 
 document.getElementById("bonjour").innerHTML=
-"Bienvenue "+nom+"<br>"+roleActuel;
+"Bienvenue "+nom+" ("+role+")";
 
 if(
-roleActuel==="Élève" ||
-roleActuel==="Parent"
+role==="Élève" ||
+role==="Parent"
 ){
 document.getElementById("appelBtn").style.display="none";
 }
 
 }
 
-function ouvrir(id){
+function ouvrir(page){
 
 document.getElementById("menu").style.display="none";
 
@@ -202,7 +224,7 @@ document.querySelectorAll(".page").forEach(
 p=>p.style.display="none"
 );
 
-document.getElementById(id).style.display="block";
+document.getElementById(page).style.display="block";
 
 }
 
