@@ -2,22 +2,181 @@
 <html>
 
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
 <title>ENT Pro NDM</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:#0b1e3a;
+color:white;
+}
+
+.top{
+padding:25px;
+text-align:center;
+font-size:30px;
+font-weight:bold;
+}
+
+.card{
+
+background:white;
+
+color:black;
+
+margin:30px;
+
+padding:30px;
+
+border-radius:25px;
+
+box-shadow:0 10px 30px rgba(0,0,0,.3);
+
+}
+
+input,select{
+
+width:100%;
+
+padding:15px;
+
+margin-top:12px;
+
+border-radius:12px;
+
+border:1px solid #ddd;
+
+}
+
+button{
+
+width:100%;
+
+padding:16px;
+
+margin-top:20px;
+
+border:none;
+
+border-radius:14px;
+
+background:#1565c0;
+
+color:white;
+
+font-size:18px;
+
+}
+
+.menu{
+
+display:none;
+
+}
+
+.box{
+
+background:#1565c0;
+
+padding:18px;
+
+margin-top:15px;
+
+border-radius:14px;
+
+}
+
+</style>
 
 </head>
 
 <body>
 
-<h1>ENT Pro NDM</h1>
+<div class="top">
+ENT Pro NDM
+</div>
 
-<p>Bienvenue</p>
+<div class="card" id="login">
 
-<button>
-Connexion
+<h2>Connexion</h2>
+
+<input id="nom" placeholder="Nom">
+
+<select id="role">
+
+<option>Élève</option>
+
+<option>Professeur</option>
+
+<option>Délégué</option>
+
+<option>Sous-délégué</option>
+
+<option>Administration</option>
+
+</select>
+
+<button onclick="connexion()">
+Entrer
 </button>
+
+</div>
+
+<div class="card menu" id="menu">
+
+<h2 id="bonjour"></h2>
+
+<div class="box">
+📚 Devoirs
+</div>
+
+<div class="box">
+📝 Faire l’appel
+</div>
+
+<div class="box">
+💬 Messagerie
+</div>
+
+<div class="box">
+⚙ Administration
+</div>
+
+</div>
+
+<script>
+
+function connexion(){
+
+let nom=
+document.getElementById("nom").value;
+
+let role=
+document.getElementById("role").value;
+
+document
+.getElementById("login")
+.style.display="none";
+
+document
+.getElementById("menu")
+.style.display="block";
+
+document
+.getElementById("bonjour")
+.innerHTML=
+"Bienvenue "+nom+
+"<br>"+role;
+
+}
+
+</script>
 
 </body>
 
