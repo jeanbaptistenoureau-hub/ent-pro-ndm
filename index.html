@@ -8,14 +8,14 @@
 <style>
 body{
 margin:0;
-font-family:Arial,sans-serif;
+font-family:Arial;
 background:#0b1e3a;
 color:white;
 }
 
 header{
 background:#1565c0;
-padding:20px;
+padding:15px;
 text-align:center;
 font-size:28px;
 font-weight:bold;
@@ -24,10 +24,10 @@ font-weight:bold;
 .card{
 background:white;
 color:black;
-max-width:500px;
+max-width:700px;
 margin:20px auto;
 padding:20px;
-border-radius:20px;
+border-radius:15px;
 }
 
 input,select,button{
@@ -35,8 +35,6 @@ width:100%;
 padding:12px;
 margin-top:10px;
 border-radius:10px;
-border:1px solid #ccc;
-box-sizing:border-box;
 }
 
 button{
@@ -46,7 +44,7 @@ border:none;
 cursor:pointer;
 }
 
-.menu{
+.menu,.page{
 display:none;
 }
 
@@ -57,14 +55,6 @@ padding:15px;
 margin-top:10px;
 border-radius:10px;
 cursor:pointer;
-}
-
-.page{
-display:none;
-}
-
-.back{
-margin-top:20px;
 }
 </style>
 </head>
@@ -80,14 +70,20 @@ margin-top:20px;
 <input id="nom" placeholder="Nom">
 
 <select id="role">
+
 <option>Élève</option>
 <option>Professeur</option>
+<option>CPE</option>
 <option>Délégué</option>
 <option>Sous-délégué</option>
+<option>Parent</option>
 <option>Administration</option>
+
 </select>
 
-<button onclick="connexion()">Connexion</button>
+<button onclick="connexion()">
+Connexion
+</button>
 
 </div>
 
@@ -95,9 +91,32 @@ margin-top:20px;
 
 <h2 id="bonjour"></h2>
 
-<div class="box" onclick="ouvrir('appel')">📝 Faire l'appel</div>
-<div class="box" onclick="ouvrir('devoirs')">📚 Devoirs</div>
-<div class="box" onclick="ouvrir('messages')">💬 Messagerie</div>
+<div class="box" onclick="ouvrir('edt')">
+📅 Emploi du temps
+</div>
+
+<div class="box" id="appelBtn" onclick="ouvrir('appel')">
+📝 Faire l'appel
+</div>
+
+<div class="box" onclick="ouvrir('devoirs')">
+📚 Devoirs
+</div>
+
+<div class="box" onclick="ouvrir('cdi')">
+💻 CDI
+</div>
+
+</div>
+
+<div class="card page" id="edt">
+
+<h2>Emploi du temps</h2>
+
+<p>Lundi : Maths 8h-9h</p>
+<p>Mardi : Français 10h-11h</p>
+
+<button onclick="retour()">Retour</button>
 
 </div>
 
@@ -105,15 +124,13 @@ margin-top:20px;
 
 <h2>Appel</h2>
 
-<label><input type="checkbox"> Élève 1</label><br>
-<label><input type="checkbox"> Élève 2</label><br>
-<label><input type="checkbox"> Élève 3</label><br>
+<label><input type="checkbox"> Élève 1 présent</label><br>
+<label><input type="checkbox"> Élève 2 présent</label><br>
+<label><input type="checkbox"> Élève 3 présent</label><br>
 
 <button>Enregistrer</button>
 
-<button class="back" onclick="retour()">
-Retour
-</button>
+<button onclick="retour()">Retour</button>
 
 </div>
 
@@ -126,47 +143,66 @@ Retour
 <li>Français : Lecture chapitre 2</li>
 </ul>
 
-<button class="back" onclick="retour()">
-Retour
-</button>
+<button onclick="retour()">Retour</button>
 
 </div>
 
-<div class="card page" id="messages">
+<div class="card page" id="cdi">
 
-<h2>Messagerie</h2>
+<h2>Prêt ordinateur CDI</h2>
 
-<input placeholder="Écrire un message">
+<input placeholder="Nom élève">
 
-<button>Envoyer</button>
+<select>
+<option>PC-01</option>
+<option>PC-02</option>
+<option>PC-03</option>
+</select>
 
-<button class="back" onclick="retour()">
-Retour
-</button>
+<input placeholder="Prix du matériel">
+
+<button>Enregistrer le prêt</button>
+
+<button onclick="retour()">Retour</button>
 
 </div>
 
 <script>
 
+let roleActuel="";
+
 function connexion(){
 
-let nom=document.getElementById("nom").value;
-let role=document.getElementById("role").value;
+roleActuel=
+document.getElementById("role").value;
+
+let nom=
+document.getElementById("nom").value;
 
 document.getElementById("login").style.display="none";
-
 document.getElementById("menu").style.display="block";
 
 document.getElementById("bonjour").innerHTML=
-"Bienvenue "+nom+"<br>"+role;
+"Bienvenue "+nom+"<br>"+roleActuel;
+
+if(
+roleActuel==="Élève" ||
+roleActuel==="Parent"
+){
+document.getElementById("appelBtn").style.display="none";
+}
 
 }
 
-function ouvrir(page){
+function ouvrir(id){
 
 document.getElementById("menu").style.display="none";
 
-document.getElementById(page).style.display="block";
+document.querySelectorAll(".page").forEach(
+p=>p.style.display="none"
+);
+
+document.getElementById(id).style.display="block";
 
 }
 
