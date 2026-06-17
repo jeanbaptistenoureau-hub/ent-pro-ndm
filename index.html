@@ -3,68 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>ENT NDM</title>
 
-<style>
-body{
-margin:0;
-font-family:Arial,sans-serif;
-background:#0f172a;
-color:white;
-}
+<link rel="stylesheet" href="style.css">
 
-header{
-background:#2563eb;
-padding:15px;
-text-align:center;
-font-size:28px;
-font-weight:bold;
-}
-
-.card{
-background:white;
-color:black;
-max-width:800px;
-margin:20px auto;
-padding:20px;
-border-radius:15px;
-}
-
-input,select,button{
-width:100%;
-padding:12px;
-margin-top:10px;
-border-radius:10px;
-}
-
-button{
-background:#2563eb;
-color:white;
-border:none;
-cursor:pointer;
-}
-
-.menu{
-display:none;
-}
-
-.box{
-background:#2563eb;
-color:white;
-padding:15px;
-margin-top:10px;
-border-radius:10px;
-cursor:pointer;
-}
-
-.page{
-display:none;
-}
-</style>
 </head>
+
 <body>
 
-<header>ENT NDM</header>
+<header>
+ENT NDM
+</header>
 
 <div class="card" id="login">
 
@@ -73,20 +23,26 @@ display:none;
 <input id="nom" placeholder="Nom">
 
 <select id="role">
+
 <option>Élève</option>
 <option>Parent</option>
 <option>Professeur</option>
 <option>CPE</option>
+<option>Administration</option>
 <option>Délégué</option>
 <option>Sous-délégué</option>
-<option>Administration</option>
+<option>Infirmière</option>
+<option>Secrétariat</option>
+
 </select>
 
-<button onclick="connexion()">Connexion</button>
+<button onclick="connexion()">
+Connexion
+</button>
 
 </div>
 
-<div class="card menu" id="menu">
+<div class="card" id="menu" style="display:none;">
 
 <h2 id="bonjour"></h2>
 
@@ -94,12 +50,12 @@ display:none;
 📅 Emploi du temps
 </div>
 
-<div class="box" onclick="ouvrir('devoirs')">
-📚 Devoirs
-</div>
-
 <div class="box" onclick="ouvrir('notes')">
 📊 Notes
+</div>
+
+<div class="box" onclick="ouvrir('devoirs')">
+📚 Devoirs
 </div>
 
 <div class="box" onclick="ouvrir('messages')">
@@ -107,15 +63,11 @@ display:none;
 </div>
 
 <div class="box" id="appelBtn" onclick="ouvrir('appel')">
-📝 Faire l'appel
+📝 Appel
 </div>
 
-<div class="box" onclick="ouvrir('remarques')">
-⚠️ Remarques
-</div>
-
-<div class="box" onclick="ouvrir('colles')">
-⏰ Heures de colle
+<div class="box" onclick="ouvrir('viesco')">
+⚠️ Vie scolaire
 </div>
 
 <div class="box" onclick="ouvrir('cdi')">
@@ -131,25 +83,21 @@ display:none;
 <button onclick="retour()">Retour</button>
 </div>
 
-<div class="card page" id="devoirs">
-<h2>Devoirs</h2>
-<ul>
-<li>Maths : Exercice 5</li>
-<li>Histoire : Révision chapitre 2</li>
-</ul>
+<div class="card page" id="notes">
+<h2>Notes</h2>
+<p>Aucune note enregistrée</p>
 <button onclick="retour()">Retour</button>
 </div>
 
-<div class="card page" id="notes">
-<h2>Notes</h2>
-<p>Maths : 15/20</p>
-<p>Français : 13/20</p>
+<div class="card page" id="devoirs">
+<h2>Devoirs</h2>
+<p>Aucun devoir</p>
 <button onclick="retour()">Retour</button>
 </div>
 
 <div class="card page" id="messages">
 <h2>Messagerie</h2>
-<input placeholder="Écrire un message">
+<input placeholder="Votre message">
 <button>Envoyer</button>
 <button onclick="retour()">Retour</button>
 </div>
@@ -166,15 +114,14 @@ display:none;
 <button onclick="retour()">Retour</button>
 </div>
 
-<div class="card page" id="remarques">
-<h2>Remarques</h2>
-<p>Aucune remarque</p>
-<button onclick="retour()">Retour</button>
-</div>
+<div class="card page" id="viesco">
+<h2>Vie scolaire</h2>
 
-<div class="card page" id="colles">
-<h2>Heures de colle</h2>
-<p>Aucune heure de colle</p>
+<p>Remarques</p>
+<p>Observations</p>
+<p>Heures de colle</p>
+<p>Sanctions</p>
+
 <button onclick="retour()">Retour</button>
 </div>
 
@@ -189,56 +136,12 @@ display:none;
 <option>PC-03</option>
 </select>
 
-<button>Enregistrer le prêt</button>
+<button>Prêter ordinateur</button>
 
 <button onclick="retour()">Retour</button>
 </div>
 
-<script>
-
-function connexion(){
-
-let role=document.getElementById("role").value;
-let nom=document.getElementById("nom").value;
-
-document.getElementById("login").style.display="none";
-document.getElementById("menu").style.display="block";
-
-document.getElementById("bonjour").innerHTML=
-"Bienvenue "+nom+" ("+role+")";
-
-if(
-role==="Élève" ||
-role==="Parent"
-){
-document.getElementById("appelBtn").style.display="none";
-}
-
-}
-
-function ouvrir(page){
-
-document.getElementById("menu").style.display="none";
-
-document.querySelectorAll(".page").forEach(
-p=>p.style.display="none"
-);
-
-document.getElementById(page).style.display="block";
-
-}
-
-function retour(){
-
-document.querySelectorAll(".page").forEach(
-p=>p.style.display="none"
-);
-
-document.getElementById("menu").style.display="block";
-
-}
-
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
