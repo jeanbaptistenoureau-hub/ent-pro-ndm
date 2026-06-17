@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -20,29 +21,42 @@ ENT NDM
 
 <h2>Connexion</h2>
 
-<input id="nom" placeholder="Nom">
+<input
+id="email"
+type="email"
+placeholder="Adresse mail">
 
-<select id="role">
-
-<option>Élève</option>
-<option>Parent</option>
-<option>Professeur</option>
-<option>CPE</option>
-<option>Administration</option>
-<option>Délégué</option>
-<option>Sous-délégué</option>
-<option>Infirmière</option>
-<option>Secrétariat</option>
-
-</select>
+<input
+id="mdp"
+type="password"
+placeholder="Mot de passe">
 
 <button onclick="connexion()">
 Connexion
 </button>
 
+<p>
+
+Compte démo :
+
+<br><br>
+
+Email :
+directeur@ndm.fr
+
+<br>
+
+Mot de passe :
+directeur123
+
+</p>
+
 </div>
 
-<div class="card" id="menu" style="display:none;">
+<div
+class="card"
+id="menu"
+style="display:none;">
 
 <h2 id="bonjour"></h2>
 
@@ -62,7 +76,7 @@ Connexion
 💬 Messagerie
 </div>
 
-<div class="box" id="appelBtn" onclick="ouvrir('appel')">
+<div class="box" onclick="ouvrir('appel')">
 📝 Appel
 </div>
 
@@ -74,71 +88,171 @@ Connexion
 💻 CDI
 </div>
 
+<div class="box" onclick="ouvrir('admin')">
+⚙️ Administration
+</div>
+
 </div>
 
 <div class="card page" id="edt">
+
 <h2>Emploi du temps</h2>
+
 <p>Lundi : Maths</p>
+
 <p>Mardi : Français</p>
-<button onclick="retour()">Retour</button>
+
+<button onclick="retour()">
+Retour
+</button>
+
 </div>
 
 <div class="card page" id="notes">
+
 <h2>Notes</h2>
-<p>Aucune note enregistrée</p>
-<button onclick="retour()">Retour</button>
+
+<p>Aucune note</p>
+
+<button onclick="retour()">
+Retour
+</button>
+
 </div>
 
 <div class="card page" id="devoirs">
+
 <h2>Devoirs</h2>
+
 <p>Aucun devoir</p>
-<button onclick="retour()">Retour</button>
+
+<button onclick="retour()">
+Retour
+</button>
+
 </div>
 
 <div class="card page" id="messages">
+
 <h2>Messagerie</h2>
+
 <input placeholder="Votre message">
-<button>Envoyer</button>
-<button onclick="retour()">Retour</button>
+
+<button>
+Envoyer
+</button>
+
+<button onclick="retour()">
+Retour
+</button>
+
 </div>
 
 <div class="card page" id="appel">
+
 <h2>Appel</h2>
 
-<label><input type="checkbox"> Élève 1 présent</label><br>
-<label><input type="checkbox"> Élève 2 présent</label><br>
-<label><input type="checkbox"> Élève 3 présent</label><br>
+<label>
+<input type="checkbox">
+Élève 1
+</label>
 
-<button>Enregistrer</button>
+<br>
 
-<button onclick="retour()">Retour</button>
+<label>
+<input type="checkbox">
+Élève 2
+</label>
+
+<br>
+
+<label>
+<input type="checkbox">
+Élève 3
+</label>
+
+<br><br>
+
+<button>
+Enregistrer
+</button>
+
+<button onclick="retour()">
+Retour
+</button>
+
 </div>
 
 <div class="card page" id="viesco">
+
 <h2>Vie scolaire</h2>
 
 <p>Remarques</p>
+
 <p>Observations</p>
+
 <p>Heures de colle</p>
+
 <p>Sanctions</p>
 
-<button onclick="retour()">Retour</button>
+<button onclick="retour()">
+Retour
+</button>
+
 </div>
 
 <div class="card page" id="cdi">
+
 <h2>CDI</h2>
 
 <input placeholder="Nom élève">
 
 <select>
+
 <option>PC-01</option>
+
 <option>PC-02</option>
+
 <option>PC-03</option>
+
 </select>
 
-<button>Prêter ordinateur</button>
+<button>
+Prêter ordinateur
+</button>
 
-<button onclick="retour()">Retour</button>
+<button onclick="retour()">
+Retour
+</button>
+
+</div>
+
+<div class="card page" id="admin">
+
+<h2>Administration</h2>
+
+<p>Gestion des comptes</p>
+
+<p>30 classes</p>
+
+<p>Professeurs</p>
+
+<p>Parents</p>
+
+<p>Délégués</p>
+
+<p>Sous-délégués</p>
+
+<p>CPE</p>
+
+<p>Infirmière</p>
+
+<p>Secrétariat</p>
+
+<button onclick="retour()">
+Retour
+</button>
+
 </div>
 
 <script src="script.js"></script>
