@@ -1,19 +1,25 @@
 function connexion(){
 
-let nom=document.getElementById("nom").value;
-let role=document.getElementById("role").value;
+let ecole=document.getElementById("ecole").value;
+let identifiant=document.getElementById("identifiant").value;
+let mdp=document.getElementById("mdp").value;
+
+if(
+ecole==="NDM-DEMO" &&
+identifiant==="directeur" &&
+mdp==="directeur123"
+){
 
 document.getElementById("login").style.display="none";
 document.getElementById("menu").style.display="block";
 
 document.getElementById("bonjour").innerHTML=
-"Bienvenue "+nom+" ("+role+")";
+"Bienvenue Directeur";
 
-if(
-role==="Élève" ||
-role==="Parent"
-){
-document.getElementById("appelBtn").style.display="none";
+}else{
+
+alert("Code école ou mot de passe incorrect");
+
 }
 
 }
