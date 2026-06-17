@@ -47,3 +47,7 @@ margin-top:10px;
 border-radius:12px;
 cursor:pointer;
 }
+
+.page{
+display:none;
+}
